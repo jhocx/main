@@ -29,7 +29,7 @@ Personal Finance Tracker is a desktop finance tracker application used for track
 *** In charge of code in model component
 ** Documentation:
 *** Update model component in Developer's Guide (Pull Request https://github.com/CS2103-AY1819S2-W15-2/main/pull/112[#112])
-*** Added the implementation of debts in Developer's Guide (Pull Request [#])
+*** Added the implementation of debts in Developer's Guide (Pull Request https://github.com/CS2103-AY1819S2-W15-2/main/pull/221[#221])
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/CS2103-AY1819S2-W15-2/main/pull/22[#22], https://github.com/CS2103-AY1819S2-W15-2/main/pull/81[#81]
 *** Contributed to forum discussions (example:  https://github.com/nus-cs2103-AY1819S2/forum/issues/11[#11])

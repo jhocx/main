@@ -257,7 +257,7 @@ Shortcut: `ad n/PERSON_OWED $/AMOUNT_OWED c/CATEGORY due/DEADLINE [r/REMARK]`
 * The PERSON_OWED should only contain alphanumeric characters and spaces, and it should not be blank.
 * The AMOUNT_OWED should only contain positive numbers and reflect the value in dollars. Values accepted are in the range of $0.01 to $9,999,999.99. A maximum of 2 decimal places are allowed.
 * The CATEGORY is case insensitive and should only be one of the following: FOOD, TRANSPORT, SHOPPING, WORK, UTILITIES, HEALTHCARE, ENTERTAINMENT, TRAVEL, OTHERS.
-* The DEADLINE should be in dd-mm-yyyy format.
+* The DEADLINE should be in dd-mm-yyyy format and should not be a date before today's date.
 * If REMARK is omitted, no remarks will be stored.
 ====
 
@@ -277,7 +277,7 @@ Shortcut: `ed INDEX [n/PERSON_OWED] [$/AMOUNT_OWED] [c/CATEGORY] [due/DEADLINE] 
 
 ====
 * Edits the debt at the specified `INDEX`.
-* The index refers to the index number shown in the displayed expense list. The index must be a positive integer.
+* The index refers to the index number shown in the displayed debt list. The index must be a positive integer.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 ====
@@ -286,8 +286,8 @@ You can omit [optional] parameters by leaving them empty. If all parameters are 
 
 Examples:
 
-* `editdebt 5 n/Tommy $/60` +
-Edits expense owed and amount owed of the 5th debt to be `Tommy` and `$60` respectively.
+* `editdebt 5 n/Tommy $/60`
+Edits debt owed and amount owed of the 5th debt to be `Tommy` and `$60` respectively.
 
 === Deleting a debt: `deletedebt`
 Deletes the specified debt from the finance tracker.
@@ -296,7 +296,7 @@ Shortcut: `dd INDEX`
 
 ====
 * Deletes the debt at the specified `INDEX`.
-* The index refers to the index number shown in the displayed expense list. The index must be a positive integer.
+* The index refers to the index number shown in the displayed debt list. The index must be a positive integer.
 ====
 
 Examples:
@@ -372,17 +372,13 @@ Examples:
 === Editing a recurring : `editrecurring`
 
 Edits an existing recurring in the finance tracker. +
-Format: `editrecurring INDEX [p/EDITPASTOPTION] [n/NAME] [$/AMOUNT] [c/CATEGORY] [d/STARTDATE] [r/REMARK] [f/FREQUENCY] [o/OCCURRENCE]` +
-Shortcut: `er INDEX [p/EDITPASTOPTION] [n/NAME] [$/AMOUNT] [c/CATEGORY] [d/STARTDATE] [r/REMARK] [f/FREQUENCY] [o/OCCURRENCE]`
+Format: `editrecurring INDEX [n/NAME] [$/AMOUNT] [c/CATEGORY] [d/STARTDATE] [r/REMARK] [f/FREQUENCY] [o/OCCURRENCE]` +
+Shortcut: `er INDEX [n/NAME] [$/AMOUNT] [c/CATEGORY] [d/STARTDATE] [r/REMARK] [f/FREQUENCY] [o/OCCURRENCE]`
 
 ====
 * Edits the recurring at the specified `INDEX`.
 * The index refers to the index number shown in the displayed recurring list. The index must be a positive integer.
 * At least one of the optional fields must be provided.
-* EDITPASTOPTION should only be 'Y' or 'N'. This prompts user if expenses previously added by this recurring should be edited to reflect the new changes.
-** Agreeing (Y) will edit the recurring, such that new expenses made by this recurring from this time on will reflect the new changes, while also changing old expenses already added by this recurring.
-** Disagreeing (N) will edit the recurring, such that new expenses made by this recurring from this time on will reflect the new changes, while old expenses already added by this recurring will not be changed.
-* If EDITPASTOPTION is omitted, it defaults to N.
 * Existing values will be updated to the input values.
 ====
 [TIP]
@@ -391,22 +387,18 @@ You can omit (optional) parameters by leaving them empty. If all parameters are 
 Examples:
 
 * `editrecurring 9 $/450 c/food` +
-Edits the amount and category of the 9th recurring to be `450` and `food` respectively. No changes will be made to old expenses already added by this recurring.
+Edits the amount and category of the 9th recurring to be `450` and `food` respectively.
 
 === Deleting a recurring: `deleterecurring`
 
 Deletes the specified recurring from the finance tracker. +
-Format: `deleterecurring INDEX [p/DELETEPASTOPTION]` +
-Shortcut: `dr INDEX [p/DELETEPASTOPTION]`
+Format: `deleterecurring INDEX` +
+Shortcut: `dr INDEX`
 
 ====
 * Deletes the recurring at the specified `INDEX`.
 * The index refers to the index number shown in the displayed recurring list. The index must be a positive integer.
 * At least one of the optional fields must be provided.
-* The DELETEPASTOPTION should only be 'Y' or 'N'. This prompts user if expenses previously added by this recurring should be deleted.
-** Agreeing (Y) will delete the recurring, and delete all old expenses already added by this recurring.
-** Disagreeing (N) will delete the recurring, but does not delete old expenses already added by this recurring.
-* If DELETEPASTOPTION is omitted, it defaults to N.
 ====
 [TIP]
 You can omit (optional) parameters by leaving them empty. If all parameters are empty, no edits will occur.
@@ -414,8 +406,8 @@ You can omit (optional) parameters by leaving them empty. If all parameters are 
 Examples:
 
 * `listrecurring v/all` +
-`deleterecurring 2 p/N` +
-Deletes the 2nd recurring in the finance tracker, without deleting old expenses already added by this recurring.
+`deleterecurring 2` +
+Deletes the 2nd recurring in the finance tracker.
 
 === Clearing all recurrings: `clearrecurring`
 
@@ -430,6 +422,7 @@ Format: `convertrecurring` +
 Shortcut: `cre`
 // end::recurring[]
 
+// tag::stats[]
 === Viewing Statistics - Summary: `stats`
 Produces statistics regarding the user's finance. +
 The statistics include the frequency of entries, the total amount of money spent +
@@ -529,6 +522,7 @@ Examples:
 * `statscompare d1/01-01-2019 d2/01-02-2019 p/month`
 * `statscompare d1/01-01-2019 d2/07-01-2019 d3/07-01-2019 d4/13-02-2019 p/7`
 * `statscompare d1/01-01-2018 d2/01-01-2018 p/month vr/pie c/food`
+// end::stats[]
 
 === Listing entered commands : `history`
 
@@ -667,15 +661,17 @@ e.g. `payDebt 2`
 * *List recurrings* : `listrecurring`
 * *Add a recurring* : `addrecurring n/NAME $/AMOUNT c/CATEGORY [d/STARTDATE] [r/REMARK] [f/FREQUENCY] [o/OCCURRENCE]` +
 e.g. `addrecurring n/Phone Bill $/50.00 c/utilities d/23-2-2019 r/Signed a new 2 year contract. f/M o/24` +
-* *Edit a recurring* : `editrecurring INDEX [p/EDITPASTOPTION] [n/NAME] [$/AMOUNT] [c/CATEGORY] [d/STARTDATE] [r/REMARK] [f/FREQUENCY] [o/OCCURRENCE]` +
-e.g. `editrecurring 9 p/N $/450 c/food` +
-* *Delete a recurring* : `deleterecurring INDEX [p/DELETEPASTOPTION]` +
-e.g. `deleterecurring 2 p/N` +
-* *Viewing statistics* : `stats [m/MODE] [vr/VISUAL_REPRESENTATION] [sd/START_DATE] [ed/END_DATE] [c/CATEGORY]` +
-e.g. `stats c/frequency sd/01-01-2019 ed/01-02-2019 vr/bar c/food`
-* *Viewing Macro Statistic Trend* : `stats_mt sd/START_DATE ed/END_DATE p/PERIOD [vr/VISUAL_REPRESENTATION]
+* *Edit a recurring* : `editrecurring INDEX [n/NAME] [$/AMOUNT] [c/CATEGORY] [d/STARTDATE] [r/REMARK] [f/FREQUENCY] [o/OCCURRENCE]` +
+e.g. `editrecurring 9 $/450 c/food` +
+* *Delete a recurring* : `deleterecurring INDEX` +
+e.g. `deleterecurring 2` +
+* *Converting outstanding expenses from all recurrings* : `convertrecurring` +
+e.g. `convertrecurring` +
+* *Viewing statistics* : `stats [sd/START_DATE] [ed/END_DATE] [c/CATEGORY]` +
+e.g. `stats c/frequency sd/01-01-2019 ed/01-02-2019`
+* *Viewing Macro Statistic Trend* [Coming in v1.4]: `stats_mt sd/START_DATE ed/END_DATE p/PERIOD [vr/VISUAL_REPRESENTATION]
 [c/CATEGORY]` +
 e.g. `stats_mt sd/01-01-2018 ed/01-01-2018 p/month vr/line c/food`
-* *Viewing Macro Statistic Comparison* : `stats_mc d1/DATE_1 d2/DATE_2 [d#/DATE#] p/PERIOD
+* *Viewing Macro Statistic Comparison* [Coming in v1.4]: `stats_mc d1/DATE_1 d2/DATE_2 [d#/DATE#] p/PERIOD
 [vr/VISUAL_REPRESENTATION] [c/CATEGORY]` +
 e.g. `stats_mc d1/01-01-2018 d2/01-01-2018 p/month vr/pie c/food`

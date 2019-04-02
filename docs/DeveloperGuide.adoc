@@ -483,6 +483,7 @@ Each `notificationDate` is then checked against `LocalDate#now()`. If `notificat
 Every item in `notificationsToBeAlerted` is then printed on an alert box, reminding the user of the upcoming deadlines for their debts.
 // end::debt[]
 
+// tag::stats[]
 === Statistics Feature
 
 This feature allows users to calculate various statistics for the entries in their Financial Tracker. The feature will read the expenses, debts and budgets and generate various metrics to display.
@@ -518,7 +519,7 @@ Below is the UML sequence diagram and a step-by-step explanation of an example u
 ===== Design Consideration
 
 Work in Progress
-
+// end::stats[]
 // tag::budget[]
 === Budget feature
 

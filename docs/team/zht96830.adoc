@@ -1,0 +1,58 @@
+= Teoh ZhiHui - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: Personal Finance Tracker
+
+---
+
+== Overview
+This portfolio aims to document the contributions made by Goh Yin Hao to the Personal Finance Tracker.
+
+Personal Finance Tracker is a desktop finance tracker application used for tracking personal finances such as daily expenses, recurring expenses such as monthly electricity bills, budgets and debts owed to another party. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC. The product was morphed from an https://github.com/nus-cs2103-AY1819S2/addressbook-level4[Address Book] over a period of 8 weeks under the constraints described https://nus-cs2103-ay1819s2.github.io/cs2103-website/admin/project-constraints.html[here].
+
+== Summary of contributions
+
+* *Major enhancement*: added the *Statistics* feature
+** What it does: allows the users  to generate useful information from their data.
+** Justification: This feature improves the product significantly because a user can now understand their spending habits at a glance
+** Highlights: This feature allows a user to see what percentage of their expenses are spent on a particular category. The user can also quickly see how often they are spending through the expense counts.
+
+* *Code contributed*: [https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#search=zht96&sort=displayName&since=2019-02-10&until=2019-03-26&timeframe=day&reverse=false&repoSort=true[code collated by reposense]]
+
+* *Other contributions*:
+
+** Project management:
+*** Check pull requests done by group mates
+*** Create issues for tracking in GitHub Issue Tracker
+*** In charge of code in logic component
+*** Implement parsers for commands
+
+** Documentation:
+*** Documented new statistics feature in User Guide (Pull Request https://github.com/CS2103-AY1819S2-W15-2/main/pull/225[225])
+*** Aided in the writing of Use Cases and User Stories (Pull requests https://github.com/CS2103-AY1819S2-W15-2/main/pull/28[#28] and https://github.com/CS2103-AY1819S2-W15-2/main/pull/55[#55])
+
+** Enhancements to existing features:
+*** Update logic component in Developer's Guide (Pull Request https://github.com/CS2103-AY1819S2-W15-2/main/pull/108[108], https://github.com/CS2103-AY1819S2-W15-2/main/pull/110[110])
+*** Update commands to work for the Financial Tracker (Pull Request https://github.com/CS2103-AY1819S2-W15-2/main/pull/83[83], https://githubcom/CS2103-AY1819S2-W15-2/main/pull/88[88], https://github.com/CS2103-AY1819S2-W15-2/main/pull/96[96],...)
+*** Added the implementation of statistics in Developer's Guide (Pull Request https://github.com/CS2103-AY1819S2-W15-2/main/pull/225[225])
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=stats]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+
+include::../DeveloperGuide.adoc[tag=stats]
+
